@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shenal Fernando Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    background: #111;
+    font-family: 'Cinzel', serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* GAME-STYLE CURSOR */
+.cursor {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid red;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+/* LOADER */
+#loader { position: fixed; width:100%; height:100%; background:#111; display:flex; justify-content:center; align-items:center; }
+.loader-circle { width:250px; height:250px; border:2px solid rgba(255,255,255,0.2); border-radius:50%; position:relative; }
+.progress { position:absolute; width:100%; height:100%; border-radius:50%; border:2px solid white; clip-path: inset(0 50% 0 0); transform:rotate(0deg); }
+.loader-text { position:absolute; width:100%; height:100%; display:flex; justify-content:center; align-items:center; flex-direction:column; }
+.loader-text h1{ font-size:26px; text-align:center; line-height:1.5; letter-spacing:4px; }
+#count{ margin-top:15px; font-size:14px; }
+
+/* MAIN PAGE */
+.hidden{ display:none; }
+.center{ height:100vh; display:flex; justify-content:center; align-items:center; }
+#welcomeBtn{ font-size:60px; cursor:pointer; transition:0.3s, transform 0.3s; }
+#welcomeBtn:hover{ color:red; letter-spacing:5px; transform:scale(1.1); }
+
+/* SMOKE */
+.smoke{ position:fixed; width:100%; height:100%; background:white; opacity:0; transition:opacity 0.8s ease; z-index:999; pointer-events:none; }
+
+/* IMAGE / ALBUM PAGE */
+#imagePage{ display:none; min-height:100vh; background:#111; color:white; display:flex; flex-direction:column; align-items:center; padding:50px 20px; text-align:center; }
+#imagePage h1{ margin-bottom:40px; font-size:36px; letter-spacing:2px; }
+
+/* ALBUM GRID */
+#albums{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; width:100%; max-width:1200px; }
+#albums a img{ width:100%; border:3px solid red; border-radius:10px; object-fit:cover; cursor:pointer; transition:transform 0.3s; }
+#albums a img:hover{ transform:scale(1.05); }
+
+/* OWNER / BOOKING SECTION */
+#ownerSection{ margin-top:60px; text-align:center; }
+#ownerSection img{ width:200px; border-radius:100px; border:3px solid red; object-fit:cover; margin-bottom:20px; }
+#ownerSection form input, #ownerSection form textarea{ margin-bottom:15px; padding:10px; border-radius:5px; border:none; width:100%; box-sizing:border-box; }
+#ownerSection form button{ padding:12px; border:none; background:red; color:white; font-weight:bold; cursor:pointer; }
+
+/* SOCIAL LINKS */
+#socialLinks{ margin-top:20px; }
+#socialLinks a{ color:white; margin:0 10px; text-decoration:none; font-weight:bold; font-size:18px; }
+
+/* DATE CORNER */
+#dateCorner{ position:fixed; bottom:10px; right:10px; font-size:12px; opacity:0.6; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-circle">
+        <div class="progress" id="progress"></div>
+        <div class="loader-text">
+            <h1>SHENAL FERNANDO<br>PHOTOGRAPHY</h1>
+            <div id="count">0 / 100</div>
+        </div>
+    </div>
+</div>
+
+<!-- WELCOME PAGE -->
+<div id="main" class="hidden">
+    <div class="center"><h1 id="welcomeBtn">WELCOME</h1></div>
+</div>
+
+<!-- IMAGE / ALBUMS PAGE -->
+<div id="imagePage">
+    <h1>Photo Albums</h1>
+    <div id="albums">
+        <a href="https://web.facebook.com/share/p/14aSGRX5a2G/" target="_blank"><img src="photo1.jpg" alt="Photo 1"></a>
+        <a href="https://web.facebook.com/share/p/1HgdTsZpMP/" target="_blank"><img src="photo2.jpg" alt="Photo 2"></a>
+        <a href="https://web.facebook.com/share/p/1AxPDJJG9z/" target="_blank"><img src="photo3.jpg" alt="Photo 3"></a>
+        <a href="https://web.facebook.com/share/p/1AvRTPAaN2/" target="_blank"><img src="photo4.jpg" alt="Photo 4"></a>
+        <a href="https://web.facebook.com/share/p/1PXmA5wqhL/" target="_blank"><img src="photo5.jpg" alt="Photo 5"></a>
+        <a href="https://web.facebook.com/share/p/17heUP7uig/" target="_blank"><img src="photo6.jpg" alt="Photo 6"></a>
+        <a href="https://web.facebook.com/share/p/1GPw3keDgU/" target="_blank"><img src="photo7.jpg" alt="Photo 7"></a>
+        <a href="https://web.facebook.com/share/p/17T8N58obU/" target="_blank"><img src="photo8.jpg" alt="Photo 8"></a>
+    </div>
+
+    <!-- OWNER / BOOKING SECTION -->
+    <div id="ownerSection">
+        <img src="shenal1.jpg" alt="Shenal Fernando">
+        <h2>Shenal Fernando</h2>
+        <p>Negombo, Sri Lanka</p>
+        <p>+94 077 134 5261</p>
+
+        <h3>Book Us</h3>
+        <form id="bookingForm">
+            <input type="text" id="clientName" placeholder="Your Full Name" required>
+            <input type="email" id="clientEmail" placeholder="Your Email" required>
+            <textarea id="clientMessage" placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit">Send via WhatsApp</button>
+        </form>
+
+        <div id="socialLinks">
+            <a href="https://www.instagram.com/shenal_fernando_photography?igsh=MXNleTd6a3RtZXFlMg%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/share/1BJ7ZWAjqw/?mibextid=wwXIfr" target="_blank">Facebook</a>
+        </div>
+    </div>
+</div>
+
+<!-- SMOKE -->
+<div class="smoke" id="smoke"></div>
+
+<!-- DATE CORNER -->
+<div id="dateCorner"></div>
+
+<script>
+// LOADER
+let count = 0;
+let counter = document.getElementById("count");
+let progress = document.getElementById("progress");
+let loader = setInterval(() => {
+    count++;
+    counter.innerHTML = count + " / 100";
+    progress.style.transform = `rotate(${count * 3.6}deg)`;
+    if(count >= 100){
+        clearInterval(loader);
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("main").classList.remove("hidden");
+    }
+}, 25);
+
+// CURSOR FOLLOW
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+});
+
+// WELCOME CLICK → SMOKE → IMAGE PAGE
+document.getElementById("welcomeBtn").addEventListener("click", () => {
+    let smoke = document.getElementById("smoke");
+    smoke.style.opacity = "0.9";
+    setTimeout(() => {
+        smoke.style.opacity = "0";
+        document.getElementById("main").style.display = "none";
+        document.getElementById("imagePage").style.display = "flex";
+    }, 800);
+});
+
+// BOOKING FORM → WHATSAPP
+document.getElementById("bookingForm").addEventListener('submit', function(e){
+    e.preventDefault();
+    let name = document.getElementById("clientName").value;
+    let email = document.getElementById("clientEmail").value;
+    let message = document.getElementById("clientMessage").value;
+    let whatsappLink = `https://wa.me/94771345261?text=Name:${encodeURIComponent(name)}%0AEmail:${encodeURIComponent(email)}%0AMessage:${encodeURIComponent(message)}`;
+    window.open(whatsappLink, "_blank");
+});
+
+// DATE DISPLAY
+function updateDate(){
+    let now = new Date();
+    document.getElementById("dateCorner").innerText = now.toLocaleDateString();
+}
+updateDate();
+setInterval(updateDate, 60000);
+</script>
+
+</body>
+</html>
